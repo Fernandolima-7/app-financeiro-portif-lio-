@@ -1,13 +1,60 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>pagar</ion-title>
+  <ion-toolbar color="danger">
+    <ion-title>CONTAS A PAGAR</ion-title>
+    <ion-buttons slot="start">
+          <ion-back-button default-href="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pagar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-card style="background:transparent;">
+  <ion-item>
+    <ion-label>Fornecedor:</ion-label>
+    <ion-input [(ngModel)] = "pagar.fornecedor" placeholder="Razão Social">
+    </ion-input>
+  </ion-item>
+
+   <ion-item>
+  <ion-label>
+    Vencimento:
+  </ion-label>
+    <ion-input type="date" type="date" [(ngModel)] = "pagar.vencimento">
+    </ion-input>
+  </ion-item>
+
+   <ion-item>
+  <ion-label>
+    Pagamento:
+  </ion-label>
+    <ion-input type="date" [(ngModel)] = "pagar.pagamento"></ion-input>
+  </ion-item>
+
+    <ion-item>
+    <ion-label>Valor:</ion-label>
+    <ion-input [(ngModel)] = "pagar.valor" placeholder="Valor a Pagar R$">
+    </ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="cadastrarPagamento()" color="success">Cadastrar</ion-button>
+  <ion-button expand="block" color="danger" (click)="clearCampos()">Limpar Campos</ion-button>
+</ion-card>
+<ion-card>
+  <ion-card-header>Lista de Contas a Pagar Cadastradas</ion-card-header>
+  <ion-list  *ngIf="listaContasPagar.length > 0; else limpaLista"></ion-list>
+    <ion-item *ngFor="let item of listaContasPagar; let i = index" >
+         <ion-label>
+          <h2> {{ i + 1 }}. {{ item.fornecedor }} </h2>
+          <p>Data de Vencimento: {{ item.vencimento }}</p>
+           <p> Data do Pagamento: {{ item.pagamento }}</p>
+           <p>Valor: R${{ item.valor }}</p>
+        </ion-label>
+          <ion-button color="danger" (click)="deletCont(i)">Excluir</ion-button>
+    </ion-item>
+  <ng-template #limpaLista>
+      <ion-card-content>
+        Nenhuma Conta a Pagar Cadastrada !
+      </ion-card-content>
+    </ng-template>
+</ion-card>
 </ion-content>

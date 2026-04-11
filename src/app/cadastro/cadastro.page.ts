@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
+interface cadastro {
+  nome: String;
+  tipo: String;
+  endereco: String;
+}
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.page.html',
@@ -7,10 +13,34 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class CadastroPage implements OnInit {
+  cadastro = {
+    nome: '',
+    tipo: '',
+    endereco: '',
+  };
+  constructor(private router: Router) {}
+  listaCadastro: cadastro[] = [];
+  cadastrarUsuario() {
+    const nome = this.cadastro.nome.trim();
+    const tipo = this.cadastro.tipo;
+    const endereco = this.cadastro.endereco;
 
-  constructor() { }
+    if (!nome || !tipo || !endereco) {
+      return;
+    }
 
-  ngOnInit() {
+    this.listaCadastro.unshift({ nome, tipo, endereco });
+    this.clearForm();
   }
-
+  clearForm() {
+    this.cadastro = {
+      nome: '',
+      tipo: '',
+      endereco: '',
+    };
+  }
+  deletUser(index: number) {
+    this.listaCadastro.splice(index, 1);
+  }
+  ngOnInit() {}
 }

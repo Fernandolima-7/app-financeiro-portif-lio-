@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+interface receber {
+  cliente: String;
+  vencimento: String;
+  pagamento: String;
+  valor: Number;
+}
 @Component({
   selector: 'app-receber',
   templateUrl: './receber.page.html',
@@ -7,10 +13,35 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class ReceberPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  receber = {
+    cliente: '',
+    vencimento: '',
+    pagamento: '',
+    valor: null,
+  };
+  listaContasReceber: receber[] = [];
+  cadastrarRecebimento() {
+    const cliente = this.receber.cliente.trim();
+    const vencimento = this.receber.vencimento;
+    const pagamento = this.receber.pagamento;
+    const valor = this.receber.valor;
+    if (!cliente || !vencimento || !pagamento || valor == null || valor < 0) {
+      return;
+    }
+    this.listaContasReceber.unshift({ cliente, vencimento, pagamento, valor });
+    this.clearCampos();
   }
-
+  clearCampos() {
+    this.receber = {
+      cliente: '',
+      vencimento: '',
+      pagamento: '',
+      valor: null,
+    };
+  }
+  deleteCont(i: number) {
+    this.listaContasReceber.splice(i, 1);
+  }
+  constructor(private router: Router) {}
+  ngOnInit() {}
 }
