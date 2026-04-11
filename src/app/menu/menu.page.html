@@ -1,13 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>menu</ion-title>
+    <ion-title>MENU</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-content>
+    <ion-card>
+      <ion-button expand="block" color="medium" (click)="openCadastro()">Cadastro</ion-button>
+      <ion-button expand="block" color="danger" (click)="openPagar()">Contas a Pagar</ion-button>
+      <ion-button expand="block"color="warning" (click)="openReceber()">Contas a Receber</ion-button>
+    </ion-card>
+  </ion-content>
 </ion-content>

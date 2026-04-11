@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-pagar',
   templateUrl: './pagar.page.html',
   styleUrls: ['./pagar.page.scss'],
+  standalone: false,
 })
 export class PagarPage implements OnInit {
 

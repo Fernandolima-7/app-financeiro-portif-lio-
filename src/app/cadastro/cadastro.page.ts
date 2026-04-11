@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-cadastro',
   templateUrl: './cadastro.page.html',
   styleUrls: ['./cadastro.page.scss'],
+  standalone: false,
 })
 export class CadastroPage implements OnInit {
 
